@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>放射性废料转运舱 · 联锁网危险覆盖审计</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>放射性废料转运舱联锁网</h1>
+      <p class="subtitle">Karp–Miller 覆盖树 · 危险下限可覆盖性审计（纯前端，可离线运行）</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ============ 录入区 ============ -->
+    <section class="card" id="editor">
+      <div class="card-head">
+        <h2>网模型录入</h2>
+        <div class="hint">库所 ≤ 7，迁移 ≤ 10；迁移标识唯一；消耗/产生均为非负整数。</div>
+      </div>
+
+      <h3 class="block-title">库所 · 初始令牌 · 危险下限
+        <button type="button" id="addPlace" class="btn mini">＋ 添加库所</button>
+      </h3>
+      <div class="table-scroll">
+        <table id="placeTable">
+          <thead>
+            <tr>
+              <th style="width:26%">库所名称（令牌含义）</th>
+              <th style="width:18%">初始令牌</th>
+              <th style="width:30%">危险最低令牌（留空＝非危险库所）</th>
+              <th style="width:10%">操作</th>
+            </tr>
+          </thead>
+          <tbody id="placeBody"></tbody>
+        </table>
+      </div>
+
+      <h3 class="block-title">迁移（消耗 / 产生）
+        <button type="button" id="addTransition" class="btn mini">＋ 添加迁移</button>
+      </h3>
+      <div id="transitionList"></div>
+
+      <div class="actions">
+        <button type="button" id="auditBtn" class="btn primary">▶ 开始审计</button>
+        <button type="button" id="clearBtn" class="btn danger">✕ 清空草稿与证据</button>
+        <span class="action-spacer"></span>
+        <button type="button" id="loadCoverable" class="btn ghost">载入：可覆盖样例</button>
+        <button type="button" id="loadUncoverable" class="btn ghost">载入：不可覆盖样例</button>
+      </div>
+    </section>
+
+    <!-- ============ 错误反馈 ============ -->
+    <section id="errorPanel" class="card error-card" hidden>
+      <h2>录入校验未通过（旧结论已立即移除）</h2>
+      <ul id="errorList"></ul>
+    </section>
+
+    <!-- ============ 审计结论 ============ -->
+    <section id="resultPanel" hidden></section>
+
+    <footer class="foot">
+      <span>引擎：带祖先比较的 Karp–Miller 覆盖树 · ω 为无界符号，非大整数 · 支配剪枝保证有限终止</span>
+    </footer>
+  </main>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

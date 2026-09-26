@@ -1,0 +1,16 @@
+{
+  "name": "km-coverability-audit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "放射性废料转运舱联锁网：Karp-Miller 覆盖树危险下限审计（纯前端、可离线）",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node --test test/",
+    "build": "node scripts/build.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
